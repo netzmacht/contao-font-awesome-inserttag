@@ -19,7 +19,7 @@ Folgende Formate werden unterstützt:
    ```html
    <i class="fa fa-phone fa-4x fa-muted"></i>
    ```
- * Weiterhin können weitere Klassen mitgegebn werden: {{fa::phone 4x muted::pull-left custom}}
+ * Weiterhin können weitere Klassen mitgegebn werden: `{{fa::phone 4x muted::pull-left custom}}`
   ```html
   <i class="fa fa-phone fa-4x fa-muted pull-left custom"></i>
   ```
