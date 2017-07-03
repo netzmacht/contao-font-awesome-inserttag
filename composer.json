@@ -1,0 +1,50 @@
+{
+  "name": "netzmacht/contao-font-awesome-inserttag",
+  "description": "Provides an insert tag for using font awesome icons.",
+  "keywords": [
+    "contao",
+    "icons",
+    "font awesome",
+    "icon font"
+  ],
+  "type": "contao-bundle",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "David Molineus",
+      "email": "david.molineus@netzmacht.de",
+      "homepage": "http://netzmacht.de",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "contao/core-bundle": "~4.4",
+    "contao-community-alliance/composer-plugin": "~3.0"
+  },
+  "suggests": {
+    "components/font-awesome": "Font awesome components package",
+    "fortawesome/font-awesome": "Official font awesome package"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0"
+  },
+  "conflict": {
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Netzmacht\\FontAwesome\\": "src/"
+    }
+  },
+  "replace": {
+    "contao-legacy/font-awesome": "*"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0.x-dev",
+      "dev-develop": "2.1.x-dev"
+    },
+    "contao-manager-plugin": "Netzmacht\\Contao\\FontAwesomeInsertTag\\C"
+  }
+}

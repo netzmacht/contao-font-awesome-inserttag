@@ -1,0 +1,2 @@
+parameters:
+  font_awesome_inserttag.icon_template: '<i class="fa fa-%s"></i>'

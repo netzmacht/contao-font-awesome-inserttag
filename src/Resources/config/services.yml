@@ -1,0 +1,5 @@
+services:
+  font_awesome_inserttag.hook_listener:
+    class: Netzmacht\Contao\FontAwesomeInsertTag\HookListener
+    arguments:
+      - "%font_awesome_inserttag.icon_template%"

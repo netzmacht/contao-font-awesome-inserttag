@@ -3,7 +3,7 @@
 /**
  * @package    contao-font-awesome-inserttag
  * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2015 netzmacht creative David Molineus
+ * @copyright  2015-2017 netzmacht David Molineus
  * @license    LGPL 3.0
  * @filesource
  *
@@ -12,16 +12,33 @@
 namespace Netzmacht\Contao\FontAwesomeInsertTag;
 
 /**
- * Hooks contains the insert tag hook.
+ * Class HookListener.
  *
  * @package Netzmacht\Contao\FontAwesomeInsertTag
  */
-class Hooks
+class HookListener
 {
+    /**
+     * Icon template.
+     *
+     * @var string
+     */
+    private $iconTemplate;
+
+    /**
+     * HookListener constructor.
+     *
+     * @param string $iconTemplate
+     */
+    public function __construct($iconTemplate)
+    {
+        $this->iconTemplate = $iconTemplate;
+    }
+
     /**
      * Replace the insert tag.
      *
-     * Supported are followin options:
+     * Supported are following options:
      * {{fa::phone}}
      * {{fa::phone 4x muted}}                       every entry sperated by space get an fa- prefix
      * {{fa::phone rotate-90 large::pull-left}}     2nd param is added as class without prefix
@@ -30,7 +47,7 @@ class Hooks
      *
      * @return bool|string
      */
-    public function replaceInsertTags($tag)
+    public function onReplaceInsertTags($tag)
     {
         if (strpos($tag, 'fa::') !== 0) {
             return false;
@@ -47,6 +64,6 @@ class Hooks
             return '';
         }
 
-        return sprintf($GLOBALS['TL_CONFIG']['faInsertTagTemplate'], $class);
+        return sprintf($this->iconTemplate, $class);
     }
 }
