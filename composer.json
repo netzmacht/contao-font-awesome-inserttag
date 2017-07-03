@@ -45,6 +45,6 @@
       "dev-master": "2.0.x-dev",
       "dev-develop": "2.1.x-dev"
     },
-    "contao-manager-plugin": "Netzmacht\\Contao\\FontAwesomeInsertTag\\C"
+    "contao-manager-plugin": "Netzmacht\\Contao\\FontAwesomeInsertTag\\ContaoManager\\Plugin"
   }
 }
