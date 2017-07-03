@@ -33,12 +33,9 @@
     "contao/manager-plugin": "<2.0 || >=3.0"
   },
   "autoload": {
-    "psr-0": {
-      "Netzmacht\\FontAwesome\\": "src/"
+    "psr-4": {
+      "Netzmacht\\Contao\\FontAwesomeInsertTag\\": "src/"
     }
-  },
-  "replace": {
-    "contao-legacy/font-awesome": "*"
   },
   "extra": {
     "branch-alias": {
