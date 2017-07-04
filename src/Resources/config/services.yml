@@ -3,3 +3,4 @@ services:
     class: Netzmacht\Contao\FontAwesomeInsertTag\HookListener
     arguments:
       - "%font_awesome_inserttag.icon_template%"
+      - "%font_awesome_inserttag.stack_template%"

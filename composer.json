@@ -27,7 +27,8 @@
     "fortawesome/font-awesome": "Official font awesome package"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.0"
+    "contao/manager-plugin": "^2.0",
+    "phpspec/phpspec": "^3.4"
   },
   "conflict": {
     "contao/manager-plugin": "<2.0 || >=3.0"
