@@ -31,6 +31,9 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('icon_template')
+                ->end()
+                ->scalarNode('stack_template')
+                ->end()
             ->end();
 
         return $treeBuilder;
