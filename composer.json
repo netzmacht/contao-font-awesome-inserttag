@@ -22,13 +22,14 @@
     "contao/core-bundle": "~4.4",
     "contao-community-alliance/composer-plugin": "~3.0"
   },
-  "suggests": {
+  "suggest": {
     "components/font-awesome": "Font awesome components package",
     "fortawesome/font-awesome": "Official font awesome package"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",
-    "phpspec/phpspec": "^3.4"
+    "phpspec/phpspec": "^3.4",
+    "netzmacht/contao-build-tools": "~1.1"
   },
   "conflict": {
     "contao/manager-plugin": "<2.0 || >=3.0"

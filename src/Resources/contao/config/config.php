@@ -12,4 +12,5 @@
 /*
  * Register the hook.
  */
+
 $GLOBALS['TL_HOOKS']['replaceInsertTags'][] = ['font_awesome_inserttag.hook_listener', 'onReplaceInsertTags'];

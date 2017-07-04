@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * @package    contao-font-awesome-inserttag
+ * @author     David Molineus <david.molineus@netzmacht.de>
+ * @copyright  2015-2017 netzmacht David Molineus
+ * @license    LGPL 3.0
+ * @filesource
+ *
+ */
+
 namespace spec\Netzmacht\Contao\FontAwesomeInsertTag;
 
 use Netzmacht\Contao\FontAwesomeInsertTag\HookListener;
