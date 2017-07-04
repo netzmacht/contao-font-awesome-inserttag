@@ -71,8 +71,9 @@ class HookListener
      *
      * Supported are following options:
      * {{fa::phone}}
-     * {{fa::phone 4x muted}}                       every entry sperated by space get an fa- prefix
-     * {{fa::phone rotate-90 large::pull-left}}     2nd param is added as class without prefix
+     * {{fa::phone 4x muted}}                   every entry sperated by space get an fa- prefix.
+     * {{fa::phone rotate-90 large:pull-left}}  2nd param is added as class without prefix.
+     * {{fa::phone rotate-90 large::pull-left}} 2nd param is added as class without prefix using old syntax.
      *
      * @param string $tag The given tag.
      *
@@ -80,16 +81,20 @@ class HookListener
      */
     private function replaceIconInsertTag($tag)
     {
+        if (substr_count($tag, '::') > 1) {
+            return $this->createIcon($tag, true, '::');
+        }
+
         return $this->createIcon($tag, true);
     }
 
     /**
      * Replace the icon stack insert tag.
      *
-     * The insert tag follows the same options used for the icon insert tag. Additionally each icon is separated by "|"
-     * It's also possible to add classes for the stack itself as third param separated by "|".
+     * The insert tag follows the same options used for the icon insert tag. Additionally each icon is separated by "::"
+     * It's also possible to add classes for the stack itself as third param separated by "::".
      *
-     * {{fa-stack::icon-one::extra-class|icon-two::extra-class|stack-classes::extra-class}}
+     * {{fa-stack::icon-one:extra-class::icon-two:extra-class::stack-classes:extra-class}}
      *
      * @param string $tag The given tag.
      *
@@ -99,7 +104,7 @@ class HookListener
     {
         // Remove fa-stack::
         $tag   = substr($tag, 10);
-        $parts = explode('|', $tag);
+        $parts = explode('::', $tag);
         $parts = array_pad($parts, 3, '');
 
         $firstIcon  = $this->createIcon($parts[0]);
@@ -107,7 +112,7 @@ class HookListener
         $classes    = '';
 
         if (!empty($parts[2])) {
-            $classes = explode('::', $parts[2]);
+            $classes = explode(':', $parts[2]);
             $classes = array_pad($classes, 2, '');
             $classes = $this->createClassList($classes[0], $classes[1]);
 
@@ -124,16 +129,17 @@ class HookListener
      *
      * @param string $tag             Given raw icon tag with or without the fa:: prefix.
      * @param bool   $removeInsertTag If true the fa:: prefix is expected to be there.
+     * @param string $delimiter       Delimiter for each icon value.
      *
      * @return string
      */
-    private function createIcon($tag, $removeInsertTag = false)
+    private function createIcon($tag, $removeInsertTag = false, $delimiter = ':')
     {
-        $parts = explode('::', $tag);
         if ($removeInsertTag) {
-            array_shift($parts);
+            $tag = substr($tag, 4);
         }
 
+        $parts   = explode($delimiter, $tag);
         $parts   = array_pad($parts, 2, '');
         $classes = $this->createClassList($parts[0], $parts[1]);
 
