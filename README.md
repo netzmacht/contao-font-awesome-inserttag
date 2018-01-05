@@ -1,37 +1,56 @@
 Font Awesome InsertTag
 ======================
 
-Diese Erweiterung ist aus der Erweiterung [netzmacht/contao-font-awesome](https://github.com/netzmacht/contao-font-awesome)
-extrahiert wurden und bietet **keine** neuen Funktionen.
+This extension provides two insert tags for creating font awesome icons in Contao CMS.
 
-Sie bietet einen InsertTag an, der für Font-Awesome Icons ersetzt:
+Features
+--------
 
-Der InsertTag
--------------
+### Inset Tag "fa"
 
-Folgende Formate werden unterstützt:
-
- * Alle Attribute nach dem ersten `::` erhalten den `fa-` Prefix: `{{fa::phone}}` 
+Following options are supported:
+ * All values after the first double column get prefixed with `fa-` Prefix: `{{fa::phone}}` 
    ```html
-   <i class="fa fa-phone"></i>
+   <i class="fa fa-phone" aria-hidden="true"></i>
    ```
- * Dabei können mehrere Attribute angegeben werden: `{{fa::phone 4x muted}}`
+ * Multiple values are supported: `{{fa::phone 4x muted}}`
    ```html
-   <i class="fa fa-phone fa-4x fa-muted"></i>
+   <i class="fa fa-phone fa-4x fa-muted" aria-hidden="true"></i>
    ```
- * Weiterhin können weitere Klassen mitgegebn werden: `{{fa::phone 4x muted::pull-left custom}}`
+ * Additional values could be passed as second param devided by a colon: `{{fa::phone 4x muted:pull-left custom}}`
   ```html
-  <i class="fa fa-phone fa-4x fa-muted pull-left custom"></i>
+  <i class="fa fa-phone fa-4x fa-muted pull-left custom" aria-hidden="true"></i>
+  ```
+  The former syntax with a double colon "::" between two params is deprecated but still supported.
+
+
+### Inset Tag "fa-stack"
+
+The second insert tag support the icon stack feature of font awesome. All features described above are supported for
+every icon. Furthermore the icon stack wrapper itself can be adjusted by classes:
+
+`{fa-stack::square:first-icon::plus:secon-icon::lg:custom-stack}`
+
+ ```html
+  <span class="fa-stack fa-lg custom-stack"><i class="fa fa-square first-icon" aria-hidden="true"></i><i class="fa fa-plus second-icon" aria-hidden="true"></i></span>
   ```
 
-Das Icon-Template
------------------
+Requirements
+------------
 
-Soll statt dem `<i>` - Tag ein Span verwendet werden? Kein Problem. Der InsertTag basiert auf einen Template:
+Version 2 is designed for Contao 4.4 and above. It can be installed by using the managed edition of Contao.
 
-Dieser kann z.b. in `system/config/initconfig.php` überschrieben werden:
+If you want to add the bundle yourself just add `Netzmacht\Contao\FontAwesomeInsertTag\NetzmachtFontAwesomeInsertTagBundle` 
+to your app kernel.
 
-```php
-$GLOBALS['TL_CONFIG']['faInsertTagTemplate'] = '<i class="fa fa-%s"></i>';
+
+Configuration
+-------------
+
+You can override the templates being used for the icon or icon-stack in your parameters.yml. The default configuration is
+
+```yaml
+parameters:
+  font_awesome_inserttag.icon_template: '<i class="fa %%s" aria-hidden="true"></i>'
+  font_awesome_inserttag.stack_template: '<span class="fa-stack%%s">%%s%%s</span>'
 ```
-
