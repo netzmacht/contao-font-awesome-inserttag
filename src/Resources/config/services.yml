@@ -1,6 +1,7 @@
 services:
   font_awesome_inserttag.hook_listener:
-    class: Netzmacht\Contao\FontAwesomeInsertTag\HookListener
+    class: Netzmacht\Contao\FontAwesomeInsertTag\EventListener\HookListener
+    public: true
     arguments:
       - "%font_awesome_inserttag.icon_template%"
       - "%font_awesome_inserttag.stack_template%"

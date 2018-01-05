@@ -1,3 +1,3 @@
 parameters:
-  font_awesome_inserttag.icon_template: '<i class="fa %%s" aria-hidden="true"></i>'
+  font_awesome_inserttag.icon_template: '<i class="%%s" aria-hidden="true"></i>'
   font_awesome_inserttag.stack_template: '<span class="fa-stack%%s">%%s%%s</span>'

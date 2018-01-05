@@ -9,7 +9,7 @@
  *
  */
 
-namespace Netzmacht\Contao\FontAwesomeInsertTag;
+namespace Netzmacht\Contao\FontAwesomeInsertTag\EventListener;
 
 /**
  * Class HookListener.
@@ -53,9 +53,8 @@ class HookListener
      */
     public function onReplaceInsertTags($tag)
     {
-        if (strpos($tag, 'fa::') === 0) {
+        if (preg_match('/^fa([bsrl]?)\:\:/', $tag)) {
             return $this->replaceIconInsertTag($tag);
-
         }
 
         if (strpos($tag, 'fa-stack::') === 0) {
@@ -69,11 +68,11 @@ class HookListener
     /**
      * Replace the icon insert tag.
      *
-     * Supported are following options:
-     * {{fa::phone}}
-     * {{fa::phone 4x muted}}                   every entry sperated by space get an fa- prefix.
-     * {{fa::phone rotate-90 large:pull-left}}  2nd param is added as class without prefix.
-     * {{fa::phone rotate-90 large::pull-left}} 2nd param is added as class without prefix using old syntax.
+     * Supported are following options where STYLE is a value of [fa,fas,fal,fab].
+     * {{STYLE::phone}}
+     * {{STYLE::phone 4x muted}}                   every entry sperated by space get an fa- prefix.
+     * {{STYLE::phone rotate-90 large:pull-left}}  2nd param is added as class without prefix.
+     * {{STYLE::phone rotate-90 large::pull-left}} 2nd param is added as class without prefix using old syntax.
      *
      * @param string $tag The given tag.
      *
@@ -114,7 +113,7 @@ class HookListener
         if (!empty($parts[2])) {
             $classes = explode(':', $parts[2]);
             $classes = array_pad($classes, 2, '');
-            $classes = $this->createClassList($classes[0], $classes[1]);
+            $classes = $this->createClassList('fa', $classes[0], $classes[1]);
 
             if ($classes) {
                 $classes = ' ' . $classes;
@@ -136,12 +135,16 @@ class HookListener
     private function createIcon($tag, $removeInsertTag = false, $delimiter = ':')
     {
         if ($removeInsertTag) {
-            $tag = substr($tag, 4);
+            $parts = explode('::', $tag, 2);
+            $style = $parts[0];
+            $tag   = $parts[1];
+        } else {
+            $style = 'fa';
         }
 
         $parts   = explode($delimiter, $tag);
         $parts   = array_pad($parts, 2, '');
-        $classes = $this->createClassList($parts[0], $parts[1]);
+        $classes = $style . ' ' . $this->createClassList($style, $parts[0], $parts[1]);
 
         if (!$classes) {
             return '';
@@ -153,16 +156,17 @@ class HookListener
     /**
      * Create classes list by adding fa prefix for thirst param.
      *
+     * @param string      $style        Icon style.
      * @param string      $faClasses    Classes which should get fa prefix separated by space.
      * @param string|null $extraClasses Extra classes separated by space.
      *
      * @return string
      */
-    private function createClassList($faClasses, $extraClasses = null)
+    private function createClassList($style, $faClasses, $extraClasses = null)
     {
         $faClasses = array_map(
-            function ($class) {
-                return 'fa-' . $class;
+            function ($class) use ($style) {
+                return $style . '-' . $class;
             },
             array_filter(
                 explode(' ', $faClasses)
