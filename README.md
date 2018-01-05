@@ -6,7 +6,9 @@ This extension provides two insert tags for creating font awesome icons in Conta
 Features
 --------
 
-### Inset Tag "fa"
+Font Awesome Inserttag supports FontAwesome 4 and FontAwesome 5 as well.
+
+### Inset Tag "fa", "fas", "far", "fal", "fab"
 
 Following options are supported:
  * All values after the first double column get prefixed with `fa-` Prefix: `{{fa::phone}}` 
@@ -23,6 +25,8 @@ Following options are supported:
   ```
   The former syntax with a double colon "::" between two params is deprecated but still supported.
 
+It works the same with the new short codes provided by Font Awesome 5.
+
 
 ### Inset Tag "fa-stack"
 
@@ -31,9 +35,11 @@ every icon. Furthermore the icon stack wrapper itself can be adjusted by classes
 
 `{fa-stack::square:first-icon::plus:secon-icon::lg:custom-stack}`
 
- ```html
+```html
   <span class="fa-stack fa-lg custom-stack"><i class="fa fa-square first-icon" aria-hidden="true"></i><i class="fa fa-plus second-icon" aria-hidden="true"></i></span>
-  ```
+```
+
+*Icon stacks only works with Font Awesome 4. Support of icon layers introduced in Font Awesome 5 is not supported yet.* 
 
 Requirements
 ------------
@@ -51,6 +57,6 @@ You can override the templates being used for the icon or icon-stack in your par
 
 ```yaml
 parameters:
-  font_awesome_inserttag.icon_template: '<i class="fa %%s" aria-hidden="true"></i>'
+  font_awesome_inserttag.icon_template: '<i class="%%s" aria-hidden="true"></i>'
   font_awesome_inserttag.stack_template: '<span class="fa-stack%%s">%%s%%s</span>'
 ```
