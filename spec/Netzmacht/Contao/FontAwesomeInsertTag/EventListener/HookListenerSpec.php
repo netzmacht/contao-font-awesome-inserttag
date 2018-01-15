@@ -24,10 +24,11 @@ class HookListenerSpec extends ObjectBehavior
 {
     private $iconTemplate  = '<i class="%s" aria-hidden="true"></i>';
     private $stackTemplate = '<span class="fa-stack%s">%s%s</span>';
+    private $defaultStyle  = 'fa';
 
     function let()
     {
-        $this->beConstructedWith($this->iconTemplate, $this->stackTemplate);
+        $this->beConstructedWith($this->iconTemplate, $this->stackTemplate, $this->defaultStyle);
     }
 
     function it_is_initializable()
@@ -38,32 +39,32 @@ class HookListenerSpec extends ObjectBehavior
     function it_parses_icon_insert_tag_with_simple_icon()
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus',
-            '<i class="%1$s %1$s-plus" aria-hidden="true"></i>'
+            '%s::plus',
+            '<i class="%s fa-plus" aria-hidden="true"></i>'
         );
     }
 
     function it_parses_icon_insert_tag_with_extra_fa_classes()
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus 2x',
-            '<i class="%1$s %1$s-plus %1$s-2x" aria-hidden="true"></i>'
+            '%s::plus 2x',
+            '<i class="%s fa-plus fa-2x" aria-hidden="true"></i>'
         );
     }
 
     function it_parses_icon_insert_tag_with_extra_classes()
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus:pull-left',
-            '<i class="%1$s %1$s-plus pull-left" aria-hidden="true"></i>'
+            '%s::plus:pull-left',
+            '<i class="%s fa-plus pull-left" aria-hidden="true"></i>'
         );
     }
 
     function it_parses_icon_insert_tag_with_extra_classes_using_double_colon()
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus::pull-left',
-            '<i class="%1$s %1$s-plus pull-left" aria-hidden="true"></i>'
+            '%s::plus::pull-left',
+            '<i class="%s fa-plus pull-left" aria-hidden="true"></i>'
         );
     }
 

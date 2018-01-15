@@ -34,5 +34,18 @@ class NetzmachtFontAwesomeInsertTagExtension extends Extension
 
         $loader->load('config.yml');
         $loader->load('services.yml');
+
+        $configuration = new Configuration();
+        $config        = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('font_awesome_inserttag.default_style', $config['default_style']);
+
+        if (isset($config['icon_template'])) {
+            $container->setParameter('font_awesome_inserttag.icon_template', $config['icon_template']);
+        }
+
+        if (isset($config['stack_template'])) {
+            $container->setParameter('font_awesome_inserttag.stack_template', $config['stack_template']);
+        }
     }
 }

@@ -5,3 +5,4 @@ services:
     arguments:
       - "%font_awesome_inserttag.icon_template%"
       - "%font_awesome_inserttag.stack_template%"
+      - "%font_awesome_inserttag.default_style%"

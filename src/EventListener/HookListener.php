@@ -33,15 +33,24 @@ class HookListener
     private $stackTemplate;
 
     /**
+     * The default style used for the fa insert tag. Useful for Font Awesome 5 support.
+     *
+     * @var string
+     */
+    private $defaultStyle;
+
+    /**
      * HookListener constructor.
      *
      * @param string $iconTemplate  The icon template.
      * @param string $stackTemplate The stack template.
+     * @param string $defaultStyle  The default style used for the fa insert tag.
      */
-    public function __construct($iconTemplate, $stackTemplate)
+    public function __construct($iconTemplate, $stackTemplate, $defaultStyle = 'fa')
     {
         $this->iconTemplate  = $iconTemplate;
         $this->stackTemplate = $stackTemplate;
+        $this->defaultStyle  = $defaultStyle;
     }
 
     /**
@@ -113,7 +122,7 @@ class HookListener
         if (!empty($parts[2])) {
             $classes = explode(':', $parts[2]);
             $classes = array_pad($classes, 2, '');
-            $classes = $this->createClassList('fa', $classes[0], $classes[1]);
+            $classes = $this->createClassList($classes[0], $classes[1]);
 
             if ($classes) {
                 $classes = ' ' . $classes;
@@ -138,13 +147,17 @@ class HookListener
             $parts = explode('::', $tag, 2);
             $style = $parts[0];
             $tag   = $parts[1];
+
+            if ($style === 'fa') {
+                $style = $this->defaultStyle;
+            }
         } else {
-            $style = 'fa';
+            $style = $this->defaultStyle;
         }
 
         $parts   = explode($delimiter, $tag);
         $parts   = array_pad($parts, 2, '');
-        $classes = $style . ' ' . $this->createClassList($style, $parts[0], $parts[1]);
+        $classes = $style . ' ' . $this->createClassList($parts[0], $parts[1]);
 
         if (!$classes) {
             return '';
@@ -156,17 +169,16 @@ class HookListener
     /**
      * Create classes list by adding fa prefix for thirst param.
      *
-     * @param string      $style        Icon style.
      * @param string      $faClasses    Classes which should get fa prefix separated by space.
      * @param string|null $extraClasses Extra classes separated by space.
      *
      * @return string
      */
-    private function createClassList($style, $faClasses, $extraClasses = null)
+    private function createClassList($faClasses, $extraClasses = null)
     {
         $faClasses = array_map(
-            function ($class) use ($style) {
-                return $style . '-' . $class;
+            function ($class) {
+                return 'fa-' . $class;
             },
             array_filter(
                 explode(' ', $faClasses)

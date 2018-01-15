@@ -34,6 +34,9 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('stack_template')
                 ->end()
+                ->scalarNode('default_style')
+                    ->defaultValue('fa')
+                ->end()
             ->end();
 
         return $treeBuilder;
