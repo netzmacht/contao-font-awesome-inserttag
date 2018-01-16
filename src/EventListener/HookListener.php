@@ -68,7 +68,6 @@ class HookListener
 
         if (strpos($tag, 'fa-stack::') === 0) {
             return $this->replaceIconStackInsertTag($tag);
-
         }
 
         return false;

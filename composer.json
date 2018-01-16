@@ -28,8 +28,7 @@
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",
-    "phpspec/phpspec": "^3.4",
-    "netzmacht/contao-build-tools": "~1.1"
+    "phpcq/all-tasks": "~1.2"
   },
   "conflict": {
     "contao/manager-plugin": "<2.0 || >=3.0"
