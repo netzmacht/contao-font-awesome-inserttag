@@ -53,10 +53,11 @@ to your app kernel.
 Configuration
 -------------
 
-You can override the templates being used for the icon or icon-stack in your parameters.yml. The default configuration is
+You can override the templates being used for the icon or icon-stack in your config.yml. The default configuration is:
 
 ```yaml
-parameters:
-  font_awesome_inserttag.icon_template: '<i class="%%s" aria-hidden="true"></i>'
-  font_awesome_inserttag.stack_template: '<span class="fa-stack%%s">%%s%%s</span>'
+config:
+  netzmacht_font_awesome_insert_tag:
+    icon_template: '<i class="%%s" aria-hidden="true"></i>'
+    stack_template: '<span class="fa-stack%%s">%%s%%s</span>'
 ```

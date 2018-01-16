@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('font_awesome_inserttag');
+        $rootNode    = $treeBuilder->root('netzmacht_font_awesome_insert_tag');
 
         $rootNode
             ->children()

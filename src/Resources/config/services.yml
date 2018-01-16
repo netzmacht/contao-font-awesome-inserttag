@@ -3,6 +3,6 @@ services:
     class: Netzmacht\Contao\FontAwesomeInsertTag\EventListener\HookListener
     public: true
     arguments:
-      - "%font_awesome_inserttag.icon_template%"
-      - "%font_awesome_inserttag.stack_template%"
-      - "%font_awesome_inserttag.default_style%"
+      - "%netzmacht_font_awesome_insert_tag.icon_template%"
+      - "%netzmacht_font_awesome_insert_tag.stack_template%"
+      - "%netzmacht_font_awesome_insert_tag.default_style%"
