@@ -8,7 +8,10 @@ Features
 
 Font Awesome Inserttag supports FontAwesome 4 and FontAwesome 5 as well.
 
-### Inset Tag "fa", "fas", "far", "fal", "fab"
+### Icon Insert Tags
+
+There are a couple of insert tags for icon generation. For Font Awesome 4 there is the previously known `fa` insert tag.
+To support the styles introduced in Font Awesome 5 there a specific insert tags the styles `fas`, `far`, `fal`, `fab`. 
 
 Following options are supported:
  * All values after the first double column get prefixed with `fa-` Prefix: `{{fa::phone}}` 
@@ -25,10 +28,11 @@ Following options are supported:
   ```
   The former syntax with a double colon "::" between two params is deprecated but still supported.
 
-It works the same with the new short codes provided by Font Awesome 5.
+It works the same with the new short codes provided by Font Awesome 5. If you're migrating from Font Awesome 4 to 5 and
+have some old insert tags you may have a look at the provided configuration option `default_style`.
 
 
-### Inset Tag "fa-stack"
+### Insert Tag "fa-stack"
 
 The second insert tag support the icon stack feature of font awesome. All features described above are supported for
 every icon. Furthermore the icon stack wrapper itself can be adjusted by classes:
@@ -60,4 +64,5 @@ config:
   netzmacht_font_awesome_insert_tag:
     icon_template: '<i class="%%s" aria-hidden="true"></i>'
     stack_template: '<span class="fa-stack%%s">%%s%%s</span>'
+    default_style: 'fa'
 ```
