@@ -66,3 +66,5 @@ config:
     stack_template: '<span class="fa-stack%%s">%%s%%s</span>'
     default_style: 'fa'
 ```
+
+If you migrate from Font Awesome 4 to 5 you might want to set the default style to `far` or `fas`.
