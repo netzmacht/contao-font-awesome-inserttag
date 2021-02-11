@@ -25,19 +25,19 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('netzmacht_font_awesome_insert_tag');
+        $treeBuilder = new TreeBuilder('netzmacht_font_awesome_insert_tag');
 
-        $rootNode
+        $treeBuilder
+            ->getRootNode()
             ->children()
                 ->scalarNode('icon_template')
                 ->end()
                 ->scalarNode('stack_template')
                 ->end()
                 ->scalarNode('default_style')
-                    ->defaultValue('fa')
+                ->defaultValue('fa')
                 ->end()
-            ->end();
+                ->end();
 
         return $treeBuilder;
     }
