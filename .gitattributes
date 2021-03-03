@@ -1,0 +1,11 @@
+.check-author.yml export-ignore
+.composer-require-checker.json export-ignore
+.gitattributes export-ignore
+.github export-ignore
+.gitignore export-ignore
+.phpcq.yaml.dist export-ignore
+.phpcq.lock export-ignore
+phpspec.yml export-ignore
+phpcs.xml.dist export-ignore
+/.phpcq export-ignore
+/spec export-ignore

@@ -1,0 +1,16 @@
+{
+  "plugins": {
+    "phpspec": [
+      {
+        "api-version": "1.0.0",
+        "version": "1.0.0",
+        "type": "php-file",
+        "url": "phpspec-plugin.php",
+        "checksum": {
+          "type": "sha-512",
+          "value": "a699ef6da45c07ada2a2996478413bf32e27d30c08a848f28bd9c219e834bac02ec94f0b9a16583c9bbe1ab160ab5eb0f7497d8cfdde9dcc4e7a40ff1e942ebe"
+        }
+      }
+    ]
+  }
+}

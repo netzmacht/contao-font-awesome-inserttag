@@ -1,4 +1,9 @@
-.idea
 /vendor
 /components
 composer.lock
+
+# phpcq
+.phpcq.yaml
+.phpcq/*
+!.phpcq
+!.phpcq/local

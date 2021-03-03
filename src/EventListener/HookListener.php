@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @package    contao-font-awesome-inserttag
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2015-2017 netzmacht David Molineus
- * @license    LGPL 3.0
- * @filesource
+ * This files is part of the contao-font-awesome-inserttag extension.
  *
+ * @package   netzmacht-contao-font-awesome-inserttag
+ * @author    David Molineus <david.molineus@netzmacht.de>
+ * @copyright 2017-2021 netzmacht David Molineus. All rights reserved.
+ * @license   LGPL-3.0-or-later https://github.com/netzmacht/contao-font-awesome-inserttag/blob/master/LICENSE
  */
+
+declare(strict_types=1);
 
 namespace Netzmacht\Contao\FontAwesomeInsertTag\EventListener;
 
 /**
  * Class HookListener.
- *
- * @package Netzmacht\Contao\FontAwesomeInsertTag
  */
-class HookListener
+final class HookListener
 {
     /**
      * Icon template.
@@ -38,7 +38,7 @@ class HookListener
      * @param string $iconTemplate  The icon template.
      * @param string $stackTemplate The stack template.
      */
-    public function __construct($iconTemplate, $stackTemplate)
+    public function __construct(string $iconTemplate, string $stackTemplate)
     {
         $this->iconTemplate  = $iconTemplate;
         $this->stackTemplate = $stackTemplate;
@@ -51,7 +51,7 @@ class HookListener
      *
      * @return bool|string
      */
-    public function onReplaceInsertTags($tag)
+    public function onReplaceInsertTags(string $tag)
     {
         if (preg_match('/^fa([bsrl]?)\:\:/', $tag)) {
             return $this->replaceIconInsertTag($tag);
@@ -59,7 +59,6 @@ class HookListener
 
         if (strpos($tag, 'fa-stack::') === 0) {
             return $this->replaceIconStackInsertTag($tag);
-
         }
 
         return false;
@@ -78,7 +77,7 @@ class HookListener
      *
      * @return string
      */
-    private function replaceIconInsertTag($tag)
+    private function replaceIconInsertTag(string $tag): string
     {
         if (substr_count($tag, '::') > 1) {
             return $this->createIcon($tag, true, '::');
@@ -99,7 +98,7 @@ class HookListener
      *
      * @return string
      */
-    private function replaceIconStackInsertTag($tag)
+    private function replaceIconStackInsertTag(string $tag): string
     {
         // Remove fa-stack::
         $tag   = substr($tag, 10);
@@ -132,7 +131,7 @@ class HookListener
      *
      * @return string
      */
-    private function createIcon($tag, $removeInsertTag = false, $delimiter = ':')
+    private function createIcon(string $tag, bool $removeInsertTag = false, string $delimiter = ':'): string
     {
         if ($removeInsertTag) {
             $parts = explode('::', $tag, 2);
@@ -162,7 +161,7 @@ class HookListener
      *
      * @return string
      */
-    private function createClassList($style, $faClasses, $extraClasses = null)
+    private function createClassList(string $style, string $faClasses, ?string $extraClasses = null): string
     {
         $faClasses = array_map(
             function ($class) use ($style) {
