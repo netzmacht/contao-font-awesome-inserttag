@@ -26,7 +26,7 @@ jobs:
           coverage: xdebug2
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer update --prefer-stable --no-interaction --no-progress --prefer-dist
         env:
           COMPOSER_ROOT_VERSION: dev-master
 
