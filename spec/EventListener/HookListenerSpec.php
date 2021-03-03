@@ -137,13 +137,11 @@ class HookListenerSpec extends ObjectBehavior
     public function it_parses_icon_stack_insert_tag_with_support_for_stack_extra_classes(): void
     {
         // phpcs:disable
-        $expected = '<span class="fa-stack fa-lg extra"><i class="fa fa-square" aria-hidden="true"></i>'
-            . '<i class="fa fa-plus" aria-hidden="true"></i></span>';
+        $expected = '<span class="fa-stack fa-lg extra"><i class="%1$s fa-square" aria-hidden="true"></i>'
+            . '<i class="%1$s fa-plus" aria-hidden="true"></i></span>';
         // phpcs:enable
 
-        $this
-            ->onReplaceInsertTags('fa-stack::square::plus::lg:extra')
-            ->shouldReturn($expected);
+        $this->shouldReplaceInsertTag('%s-stack::square::plus::lg:extra', $expected);
     }
 
     /**
