@@ -43,7 +43,7 @@ every icon. Furthermore the icon stack wrapper itself can be adjusted by classes
   <span class="fa-stack fa-lg custom-stack"><i class="fa fa-square first-icon" aria-hidden="true"></i><i class="fa fa-plus second-icon" aria-hidden="true"></i></span>
 ```
 
-*Icon stacks only works with Font Awesome 4. Support of icon layers introduced in Font Awesome 5 is not supported yet.* 
+To support the styles introduced in Font Awesome 5 there a specific insert tags the styles `fas-stack`, `far-stack`, `fal-stack`, `fab-stack`.
 
 Requirements
 ------------
