@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('font_awesome_inserttag');
+        $treeBuilder = new TreeBuilder('netzmacht_font_awesome_insert_tag');
         $rootNode    = $treeBuilder->getRootNode();
 
         $rootNode
@@ -36,6 +36,10 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('stack_template')
                     ->info('The template for icon stacks')
+                ->end()
+                ->scalarNode('default_style')
+                    ->info('The default template style')
+                    ->defaultValue('fa')
                 ->end()
             ->end();
 

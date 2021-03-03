@@ -37,12 +37,19 @@ class HookListenerSpec extends ObjectBehavior
      */
     private $stackTemplate = '<span class="fa-stack%s">%s%s</span>';
 
-    public function let()
+    /**
+     * The default style.
+     *
+     * @var string
+     */
+    private $defaultStyle = 'fa';
+
+    public function let(): void
     {
-        $this->beConstructedWith($this->iconTemplate, $this->stackTemplate);
+        $this->beConstructedWith($this->iconTemplate, $this->stackTemplate, $this->defaultStyle);
     }
 
-    public function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(HookListener::class);
     }
@@ -50,32 +57,32 @@ class HookListenerSpec extends ObjectBehavior
     public function it_parses_icon_insert_tag_with_simple_icon(): void
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus',
-            '<i class="%1$s %1$s-plus" aria-hidden="true"></i>'
+            '%s::plus',
+            '<i class="%s fa-plus" aria-hidden="true"></i>'
         );
     }
 
     public function it_parses_icon_insert_tag_with_extra_fa_classes(): void
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus 2x',
-            '<i class="%1$s %1$s-plus %1$s-2x" aria-hidden="true"></i>'
+            '%s::plus 2x',
+            '<i class="%s fa-plus fa-2x" aria-hidden="true"></i>'
         );
     }
 
     public function it_parses_icon_insert_tag_with_extra_classes(): void
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus:pull-left',
-            '<i class="%1$s %1$s-plus pull-left" aria-hidden="true"></i>'
+            '%s::plus:pull-left',
+            '<i class="%s fa-plus pull-left" aria-hidden="true"></i>'
         );
     }
 
     public function it_parses_icon_insert_tag_with_extra_classes_using_double_colon(): void
     {
         $this->shouldReplaceInsertTag(
-            '%1$s::plus::pull-left',
-            '<i class="%1$s %1$s-plus pull-left" aria-hidden="true"></i>'
+            '%s::plus::pull-left',
+            '<i class="%s fa-plus pull-left" aria-hidden="true"></i>'
         );
     }
 
