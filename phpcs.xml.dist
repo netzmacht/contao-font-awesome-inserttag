@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="ContaoToolkit">
+    <rule ref="vendor/phpcq/coding-standard/phpcs/PhpCodeQuality/ruleset.xml" />
+
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern type="relative">/spec/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PhpCodeQuality.Commenting.FunctionComment.Missing">
+        <exclude-pattern type="relative">/spec/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PhpCodeQuality.Commenting.ClassComment.Missing">
+        <exclude-pattern type="relative">/spec/*</exclude-pattern>
+    </rule>
+</ruleset>
