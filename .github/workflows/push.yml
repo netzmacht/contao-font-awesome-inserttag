@@ -1,9 +1,10 @@
-name: PHP Code Quality Diagnostics
+name: Code Quality Diagnostics
 
-on: [push]
-
-env:
-  PHPCQ_DIRECTORY: ./phpcq-runner
+on:
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -14,27 +15,68 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ 7.3, 7.4 ]
-
+        include:
+          - php: 7.4
+            output: '-o github-action -o default'
+            phpcq_install: 'update'
+          - php: 8.0
+            output: '-o default'
+            phpcq_install: 'update'
+          - php: 8.1
+            output: '-o default'
+            phpcq_install: 'update'
+          - php: 8.2
+            output: '-o default'
+            phpcq_install: 'update'
     steps:
-      - uses: actions/checkout@v2
+      - name: Pull source
+        uses: actions/checkout@v3
 
       - name: Setup PHP with PECL extension
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: xdebug2
 
-      - name: Install dependencies
-        run: composer update --prefer-stable --no-interaction --no-progress --prefer-dist
+      - name: Cache composer cache directory
+        uses: actions/cache@v3
         env:
-          COMPOSER_ROOT_VERSION: dev-master
+          cache-name: composer-cache-dir
+        with:
+          path: ~/.cache/composer
+          key: ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}
 
-      - name: Update phpcq
-        run: $GITHUB_WORKSPACE/vendor/bin/phpcq self-update
+      - name: Install composer dependencies
+        run: composer install
+
+      - name: Cache vendor directory
+        uses: actions/cache@v3
+        env:
+          cache-name: vendor
+        with:
+          path: vendor
+          key: ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-
 
       - name: Install phpcq toolchain
-        run: $GITHUB_WORKSPACE/vendor/bin/phpcq install -v --trust-keys
+        run: ./vendor/bin/phpcq ${{ matrix.phpcq_install }} -v
+
+      - name: Cache phpcq directory
+        uses: actions/cache@v3
+        env:
+          cache-name: phpcq
+        with:
+          path: .phpcq
+          key: ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-${{ hashFiles('**/.phpcq.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.php }}-build-${{ env.cache-name }}-
 
       - name: Run tests
-        run: $GITHUB_WORKSPACE/vendor/bin/phpcq run -v -o default
+        run: ./vendor/bin/phpcq run -v ${{ matrix.output }}
+
+      - name: Upload build directory to artifact
+        uses: actions/upload-artifact@v3
+        if: ${{ success() }} || ${{ failure() }}
+        with:
+          name: phpcq-builds-php-${{ matrix.php }}
+          path: .phpcq/build/

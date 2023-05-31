@@ -1,14 +1,14 @@
 {
   "name": "netzmacht/contao-font-awesome-inserttag",
-  "type": "contao-bundle",
   "description": "Provides an insert tag for using font awesome icons.",
+  "license": "LGPL-3.0-or-later",
+  "type": "contao-bundle",
   "keywords": [
     "contao",
     "icons",
     "font awesome",
     "icon font"
   ],
-  "license": "LGPL-3.0-or-later",
   "authors": [
     {
       "name": "David Molineus",
@@ -18,14 +18,11 @@
     }
   ],
   "require": {
-    "php": "^7.2 || ^8.0",
-    "contao/core-bundle": "^4.9",
-    "symfony/config": "^4.4 || ^5.0",
-    "symfony/dependency-injection": "^4.4 || ^5.0",
-    "symfony/http-kernel": "^4.4.13 || ^5.1.5"
-  },
-  "conflict": {
-    "contao/manager-plugin": "<2.0 || >=3.0"
+    "php": "^7.4 || ^8.0",
+    "contao/core-bundle": "^4.9 || ^5.0",
+    "symfony/config": "^4.4 || ^5.0 || ^6.0",
+    "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0",
+    "symfony/http-kernel": "^4.4.13 || ^5.1.5 || ^6.0"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",
@@ -33,9 +30,24 @@
     "phpcq/runner-bootstrap": "^1.0@dev",
     "phpspec/phpspec": "^5.0 || ^6.0 || ^7.0"
   },
+  "conflict": {
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
   "suggest": {
     "components/font-awesome": "Font awesome components package",
     "fortawesome/font-awesome": "Official font awesome package"
+  },
+  "autoload": {
+    "psr-4": {
+      "Netzmacht\\Contao\\FontAwesomeInsertTag\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "php-http/discovery": true,
+      "contao/manager-plugin": true
+    }
   },
   "extra": {
     "branch-alias": {
@@ -43,10 +55,5 @@
       "dev-master": "2.2.x-dev"
     },
     "contao-manager-plugin": "Netzmacht\\Contao\\FontAwesomeInsertTag\\ContaoManager\\Plugin"
-  },
-  "autoload": {
-    "psr-4": {
-      "Netzmacht\\Contao\\FontAwesomeInsertTag\\": "src/"
-    }
   }
 }

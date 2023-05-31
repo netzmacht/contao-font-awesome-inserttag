@@ -23,9 +23,6 @@ phpcq:
     phpcs:
       version: ^1.0
       signed: false
-    phpcbf:
-      version: ^1.0
-      signed: false
     composer-normalize:
       version: ^1.0
       signed: false
@@ -42,32 +39,31 @@ phpcq:
     # Composer normalize
     - C00543248C87FB13
     # phpmd
-    - 0F9684B8B16B7AB0
+    - A4E55EA12C7C085C
+    # Composer require checker
+    - 033E5F8D801A2F8D
 
-  chains:
-    fix:
-      - composer-normalize-fix
-      - phpcbf
-    verify:
-      - composer-require-checker
-      - composer-normalize
-    analyze:
-      - phploc
-      - phpcpd
-      - phpmd_src
-      - phpmd_spec
-      - phpcs
-      - phpspec
-    default:
-      - composer-require-checker
-      - composer-normalize
-      - phploc
-      - phpcpd
-      - phpmd_src
-      - phpmd_spec
-      - phpcs
-      - phpspec
 tasks:
+  fix:
+    - composer-normalize-fix
+    - phpcbf
+
+  verify:
+    - composer-require-checker
+    - composer-normalize
+
+  analyze:
+    - phploc
+    - phpcpd
+    - phpmd_src
+    - phpmd_spec
+    - phpcs
+    - phpspec
+
+  default:
+    - verify
+    - analyze
+
   phpcpd:
     plugin: phpcpd
     config:
@@ -102,6 +98,7 @@ tasks:
     plugin: phpcs
     config:
       <<: *phpcs-config
+      fix: true
 
   composer-normalize-fix:
     plugin: composer-normalize
