@@ -30,7 +30,7 @@ jobs:
             phpcq_install: 'update'
     steps:
       - name: Pull source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP with PECL extension
         uses: shivammathur/setup-php@v2
