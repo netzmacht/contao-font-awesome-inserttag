@@ -36,7 +36,7 @@ final readonly class HookListener
      *
      * @param string $tag The insert tag.
      */
-    #[AsHook('replaceInsertTag')]
+    #[AsHook('replaceInsertTags')]
     public function onReplaceInsertTags(string $tag): bool|string
     {
         if (preg_match('/^fa([bsrl]?)\:\:/', $tag)) {
