@@ -1,7 +1,9 @@
 services:
+  _defaults:
+    autoconfigure: true
+
   font_awesome_inserttag.hook_listener:
     class: Netzmacht\Contao\FontAwesomeInsertTag\EventListener\HookListener
-    public: true
     arguments:
       - "%netzmacht_font_awesome_insert_tag.icon_template%"
       - "%netzmacht_font_awesome_insert_tag.stack_template%"

@@ -1,0 +1,36 @@
+{
+  "receipts": [
+    "projects/contao-bundle/5.3"
+  ],
+  "config": {
+    "phpConstraint": "^8.2"
+  },
+  "tools": {
+    "composer": {
+      "namespace": "Netzmacht\\Contao\\FontAwesomeInsertTag"
+    },
+    "phpcq": {
+      "plugins": {
+        "phpunit": false,
+        "rector": false,
+        "phpspec": true
+      },
+      "presets": {
+        "composer-require-checker": {
+          "tasks": {
+            "composer-require-checker": {
+              "config":{
+                "config_file": ".composer-require-checker.json"
+              }
+            }
+          }
+        }
+      }
+    },
+    "psalm": {
+      "configuration": {
+        "errorLevel": "3"
+      }
+    }
+  }
+}

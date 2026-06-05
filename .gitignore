@@ -1,9 +1,11 @@
-/vendor
-/components
-composer.lock
+# Companion
+/.env.companion
 
-# phpcq
-.phpcq.yaml
-.phpcq/*
-!.phpcq
-!.phpcq/local
+# Composer
+/composer.lock
+/vendor
+
+# PHPCQ
+/.phpcq
+/.phpcq.yaml
+/.phpcs-cache

@@ -1,11 +1,29 @@
+# Custom
 .check-author.yml export-ignore
 .composer-require-checker.json export-ignore
 .gitattributes export-ignore
 .github export-ignore
 .gitignore export-ignore
-.phpcq.yaml.dist export-ignore
 .phpcq.lock export-ignore
-phpspec.yml export-ignore
-phpcs.xml.dist export-ignore
+.phpcq.yaml.dist export-ignore
 /.phpcq export-ignore
 /spec export-ignore
+phpcs.xml.dist export-ignore
+phpspec.yml export-ignore
+
+# Auto detect text files and perform LF normalization
+* text-auto
+
+# Configuration
+.editorconfig export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+.phpcq.lock export-ignore
+.phpcq.yaml.dist export-ignore
+companion.json export-ignore
+composer.lock -diff
+phpcs.xml.dist export-ignore
+psalm.xml export-ignore
+
+# PHP files
+*.php text eol=lf diff=php
